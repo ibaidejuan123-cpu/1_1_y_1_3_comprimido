@@ -7,7 +7,7 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
-		
+        <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
@@ -27,11 +27,11 @@
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
-        
-        <script src="js/leaflet.rotatedmarker.js"></script>
+        <script src="js/L.Control.Layers.Tree.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
-        <script src="js/autolinker.min.js"></script>
+        <script src="js/Autolinker.min.js"></script>
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
@@ -61,7 +61,7 @@ var osmLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels
 
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        var autolinker = new autolinker({truncate: {length: 30, location: 'smart'}});
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         // remove popup's row if "visible-with-data"
         function removeEmptyRowsFromPopupContent(content, feature) {
          var tempDiv = document.createElement('div');
@@ -123,10 +123,10 @@ var osmLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels
                 popup._contentNode.classList.remove('media');
             }
         }
-        var zoomControl = l.control.zoom({
+        var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
-        var measureControl = new l.control.ceasure({
+        var measureControl = new L.Control.Measure({
             position: 'topleft',
             primaryLengthUnit: 'meters',
             secondaryLengthUnit: 'kilometers',
@@ -693,7 +693,7 @@ var osmLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels
         map.addLayer(layer_2024_32);
         const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
-        var photonControl = l.control.photon({
+        var photonControl = L.control.photon({
             url: url["Nominatim OSM"],
             feedbackLabel: '',
             position: 'topleft',
@@ -776,7 +776,7 @@ var osmLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels
             {label: "1997", layer: layer_1997_5},
             {label: "1996", layer: layer_1996_4},]},
             ]
-        var lay = l.control.layers.tree(null, overlaysTree,{
+        var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
@@ -842,7 +842,7 @@ var osmLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels
                 return this._bounds;
             }
         });
-var legend = l.control({ position: 'bottomleft' });
+var legend = L.control({ position: 'bottomleft' });
 
 legend.onAdd = function (map) {
 var div = L.DomUtil.create('div', 'legend');
@@ -852,7 +852,7 @@ return div;
 legend.addTo(map);
         </script>        
     </body>
-var legend = l.control({ position: 'bottomleft' });
+var legend = L.control({ position: 'bottomleft' });
 
 	legend.onAdd = function (map) {
     	var div = L.DomUtil.create('div', 'legend');
